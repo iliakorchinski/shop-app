@@ -1,15 +1,31 @@
 import { Product } from '../../types/ProductsType';
 import classes from './ProductList.module.css';
 import { Link } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { addToFavourites } from '../../store/favouriteslice';
+
 type ProductListProps = {
   product: Product;
-  handleDelete: (id: number) => void;
 };
 
-export default function ProductsList({
-  product,
-  handleDelete,
-}: ProductListProps) {
+export default function ProductsList({ product }: ProductListProps) {
+  const dispath = useDispatch();
+
+  const addToFavouritesHandler = () => {
+    dispath(
+      addToFavourites({
+        id: product.id,
+        brand: product.brand,
+        category: product.category,
+        description: product.description,
+        price: product.price,
+        images: product.images,
+        title: product.title,
+      })
+    );
+  };
+
   return (
     <>
       <li className={classes.container}>
@@ -26,8 +42,8 @@ export default function ProductsList({
           />
         </Link>
       </li>
-      <button>Like</button>
-      <button onClick={() => handleDelete(product.id)}>Delete</button>
+      <button onClick={addToFavouritesHandler}>Like</button>
+      <button>Delete</button>
     </>
   );
 }
