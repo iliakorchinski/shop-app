@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import favouritesReducer from './favouriteslice';
+import allProductsReducer from './allProductsSlice';
+
 export const store = configureStore({
   reducer: {
     favourites: favouritesReducer,
+    products: allProductsReducer,
   },
 });
 

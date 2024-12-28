@@ -1,19 +1,27 @@
 import { useLoaderData } from 'react-router';
 import { Product } from '../../types/ProductsType';
 import ProductsList from '../../components/products/ProductsList';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { saveAllProducts } from '../../store/allProductsSlice';
 
 export default function ProductsPage() {
+  const dispatch = useDispatch();
   const { products } = useLoaderData();
+
+  useEffect(() => {
+    dispatch(saveAllProducts(products));
+  }, []);
+  const localProducts = useSelector(
+    (state: RootState) => state.products.products
+  );
+
   const [selectedOption, setSelectedOption] = useState<string>('all');
 
   const favourites = useSelector(
     (state: RootState) => state.favourites.favourites
   );
-
-  console.log(favourites);
 
   return (
     <>
@@ -23,7 +31,7 @@ export default function ProductsPage() {
       </select>
       <ul>
         {selectedOption === 'all' &&
-          products.map((product: Product) => (
+          localProducts.map((product: Product) => (
             <ProductsList product={product} key={product.id} />
           ))}
 
