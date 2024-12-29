@@ -6,4 +6,5 @@ export type Product = {
   price: number;
   images: string[];
   title: string;
+  isLiked: boolean;
 };

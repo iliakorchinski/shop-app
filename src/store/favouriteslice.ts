@@ -4,22 +4,25 @@ import type { RootState } from '.';
 
 interface Favourites {
   favourites: Product[];
+  like: boolean;
 }
 
 const initialState: Favourites = {
   favourites: JSON.parse(localStorage.getItem('favourites') || '[]'),
+  like: false,
 };
 
 export const favouritesSlice = createSlice({
   name: 'favourites',
   initialState,
   reducers: {
-    addToFavourites: (state, action) => {
+    toggleFavourites: (state, action) => {
       const newFavourites: Product = action.payload;
       const existingFavourites = state.favourites.find(
         (product) => product.id === newFavourites.id
       );
       if (!existingFavourites) {
+        state.like = true;
         state.favourites.push({
           id: newFavourites.id,
           brand: newFavourites.brand,
@@ -28,14 +31,26 @@ export const favouritesSlice = createSlice({
           price: newFavourites.price,
           images: newFavourites.images,
           title: newFavourites.title,
+          isLiked: state.like,
         });
-        localStorage.setItem('favourites', JSON.stringify(state.favourites));
+      } else {
+        state.like = false;
+        state.favourites = state.favourites.filter(
+          (product) => product.id !== existingFavourites.id
+        );
+
+        // state.favourites.forEach((product) => {
+        //   if (product.id === existingFavourites.id) {
+        //     product.isLiked = false;
+        //   }
+        // });
       }
+      localStorage.setItem('favourites', JSON.stringify(state.favourites));
     },
   },
 });
 
-export const { addToFavourites } = favouritesSlice.actions;
+export const { toggleFavourites } = favouritesSlice.actions;
 export const selectFavourites = (state: RootState) =>
   state.favourites.favourites;
 

@@ -16,15 +16,24 @@ export const allProductsSlice = createSlice({
   reducers: {
     saveAllProducts: (state, action) => {
       const allProducts: Product[] = action.payload;
-      if (state.products.length < 29) {
+
+      if (state.products.length === 0) {
         state.products.push(...allProducts);
         localStorage.setItem('products', JSON.stringify(state.products));
       }
     },
+    deleteProduct: (state, action) => {
+      const selectedProduct: Product = action.payload;
+      console.log(selectedProduct);
+      state.products = state.products.filter(
+        (product: Product) => product.id !== selectedProduct.id
+      );
+      localStorage.setItem('products', JSON.stringify(state.products));
+    },
   },
 });
 
-export const { saveAllProducts } = allProductsSlice.actions;
+export const { saveAllProducts, deleteProduct } = allProductsSlice.actions;
 
 export const selectFavourites = (state: RootState) => state.products.products;
 

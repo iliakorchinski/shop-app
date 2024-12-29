@@ -12,10 +12,13 @@ export default function ProductsPage() {
 
   useEffect(() => {
     dispatch(saveAllProducts(products));
-  }, []);
+  }, [dispatch, products]);
+
   const localProducts = useSelector(
     (state: RootState) => state.products.products
   );
+
+  //   console.log(localProducts);
 
   const [selectedOption, setSelectedOption] = useState<string>('all');
 
