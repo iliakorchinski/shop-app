@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/shop-app/static/css/main.d26f189f.css",
+    "main.js": "/shop-app/static/js/main.f2aa5f07.js",
+    "index.html": "/shop-app/index.html",
+    "main.d26f189f.css.map": "/shop-app/static/css/main.d26f189f.css.map",
+    "main.f2aa5f07.js.map": "/shop-app/static/js/main.f2aa5f07.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d26f189f.css",
+    "static/js/main.f2aa5f07.js"
+  ]
+}
