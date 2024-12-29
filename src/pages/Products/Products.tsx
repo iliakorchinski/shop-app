@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect, useState } from 'react';
 import { saveAllProducts } from '../../store/allProductsSlice';
+import classes from './Products.module.css';
 
 export default function ProductsPage() {
   const dispatch = useDispatch();
@@ -28,7 +29,10 @@ export default function ProductsPage() {
 
   return (
     <>
-      <select onChange={(e) => setSelectedOption(e.target.value)}>
+      <select
+        onChange={(e) => setSelectedOption(e.target.value)}
+        className={classes.select}
+      >
         <option value="all">All products</option>
         <option value="favourites">Favourites</option>
       </select>

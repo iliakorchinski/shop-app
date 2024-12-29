@@ -6,9 +6,9 @@ import HomePage from './pages/Home';
 import ProductsPage, {
   loader as productsLoader,
 } from './pages/Products/Products';
-import ProductsDetailPage, {
-  loader as singleProductLoader,
-} from './pages/ProductsDetail/ProductsDetail';
+import ProductsDetailPage from // loader as singleProductLoader,
+'./pages/ProductsDetail/ProductsDetail';
+import NewProduct from './pages/NewProduct/NewProduct';
 
 function App() {
   const router = createBrowserRouter([
@@ -25,7 +25,11 @@ function App() {
         {
           path: '/products/:id',
           element: <ProductsDetailPage />,
-          loader: singleProductLoader,
+          // loader: singleProductLoader,
+        },
+        {
+          path: '/products/new',
+          element: <NewProduct />,
         },
       ],
     },

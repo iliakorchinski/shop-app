@@ -1,0 +1,66 @@
+.select {
+  margin-top: 30px;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 10px 30px 10px 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  appearance: none;
+  cursor: pointer;
+  width: 200px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.6);
+}
+
+.select:hover {
+  border-color: #2980b9;
+}
+
+.select::after {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+  color: #333;
+}
+
+.select:focus::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Стили для option */
+.select option {
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.select option:hover {
+  background-color: #f39c12;
+  color: #fff;
+}
+
+.select option:checked {
+  background-color: #3498db;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .select {
+    width: 100%;
+  }
+}

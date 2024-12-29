@@ -30,10 +30,17 @@ export const allProductsSlice = createSlice({
       );
       localStorage.setItem('products', JSON.stringify(state.products));
     },
+
+    addProduct: (state, action) => {
+      const newProduct = action.payload;
+      state.products.push(newProduct);
+      localStorage.setItem('products', JSON.stringify(state.products));
+    },
   },
 });
 
-export const { saveAllProducts, deleteProduct } = allProductsSlice.actions;
+export const { saveAllProducts, deleteProduct, addProduct } =
+  allProductsSlice.actions;
 
 export const selectFavourites = (state: RootState) => state.products.products;
 

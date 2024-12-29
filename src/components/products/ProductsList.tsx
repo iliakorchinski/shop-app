@@ -24,7 +24,7 @@ export default function ProductsList({ product }: ProductListProps) {
     }
   }, [product.id]);
 
-  const addToFavouritesHandler = () => {
+  const toggleFavouritesHandler = () => {
     dispath(
       toggleFavourites({
         id: product.id,
@@ -72,7 +72,10 @@ export default function ProductsList({ product }: ProductListProps) {
         </Link>
       </li>
       <div className={classes.actions}>
-        <button onClick={addToFavouritesHandler} className={classes.iconButton}>
+        <button
+          onClick={toggleFavouritesHandler}
+          className={classes.iconButton}
+        >
           {!isActive ? <Like /> : <Dislike />}
         </button>
         <button onClick={deleteProductHandler} className={classes.deleteButton}>

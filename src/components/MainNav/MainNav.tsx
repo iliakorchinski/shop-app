@@ -11,6 +11,9 @@ export default function MainNav() {
         <li>
           <Link to="/products">Products</Link>
         </li>
+        <li>
+          <Link to="/products/new">Create a product</Link>
+        </li>
       </ul>
     </header>
   );
